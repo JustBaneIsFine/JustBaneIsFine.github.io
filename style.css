@@ -1,0 +1,28 @@
+body {
+	text-align: center;
+	padding: 5rem;
+	background: #0D0208;
+	color: #00FF41;
+	font-family:monospace;
+}
+
+
+.left{grid-area:left;border: 1px solid #008F11;}
+
+.middle{grid-area:middle;border: 1px solid #008F11}
+
+.right{grid-area:right;border: 1px solid #008F11}
+
+#grid{
+	margin: 5rem;
+	display: grid;
+	grid-template-areas: 'left middle right';
+
+}
+
+ul,li {
+	list-style: none;
+	margin: 0px;
+	text-align: left;
+	font-size: 1.2em;
+}
