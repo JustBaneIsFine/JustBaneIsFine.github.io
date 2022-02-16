@@ -26,7 +26,7 @@ ul,li {
 	text-align: left;
 	font-size: 1.2em;
 }
+a {color: #00FF41; text-decoration: none;}
 
 li {margin-bottom:20px;}
 
-a{color: inherit;text-decoration: none;}
