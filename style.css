@@ -21,10 +21,12 @@ body {
 }
 
 ul,li {
-	list-style: none;
+	list-style: square;
 	margin: 0px;
 	text-align: left;
 	font-size: 1.2em;
 }
 
-li {margin-bottom:5px;}
+li {margin-bottom:20px;}
+
+a{color: inherit;text-decoration: none;}

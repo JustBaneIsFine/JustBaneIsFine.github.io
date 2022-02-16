@@ -1,0 +1,24 @@
+/ todays stats
+
+1. Current weight
+2. Weight change from previous day
+3. distance from goal weight
+4. add data (popup);
+5. change goal
+
+
+
+	
+1.This week change (from prevous week (average))
+2.This month change (from previous month (average) )
+3.Total change 
+
+/stats
+
+
+
+history that contains: (date, weightchange from previous day, weight on that day)
+
+
+
+If change === closer to goal than previous, color = green, else red.
