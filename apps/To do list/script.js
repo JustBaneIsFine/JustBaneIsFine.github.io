@@ -1,15 +1,38 @@
-
+const storage = window.localStorage;
 const addButton = document.getElementById("addButton");
 const getInput = document.getElementById("inputform");
 const main = document.getElementById("main");
+var storedList = JSON.parse(storage.getItem("list"));
+console.log(storedList);
 
 window.onload = () => {
 	getInput.value = "";
+	// loadItems()
+
 }	
 
+// const loadItems = () => {
+// 	for (x in storedList){
+// 		console.log(x);
+// 	}
+// }
+
+const saveItems = (value) => {
+	if (storedList === null){
+		storage.setItem("list", JSON.stringify([value]));
+	} else {
+		newList = storedList.concat(value);
+		storage.setItem("list", JSON.stringify(newList));
+
+	}
+storedList =  JSON.parse(storage.getItem("list"));
+console.log(JSON.parse(storage.getItem("list")));
+
+}
 
 
-//if delete sign is clicked, this function runs and find the parent element of the target
+
+//if delete sign is clicked, this function runs and finds the parent element of the target
 //after confirming the delete it deletes it obviously 
 const targetDelete = (e) => {	
 
@@ -32,10 +55,9 @@ const targetCheck = (e) => {
 
 };
 
-// Create function: creates the list item along with the check sign and delete sign. adds event listeners on the signs..
-const create = () => {
 
-	const value = getInput.value;
+const createElement = (value) => {
+
 	const newLi = document.createElement("li");
 	newLi.innerHTML = value;
 	const createEl = () => document.createElement("span");
@@ -58,8 +80,15 @@ const create = () => {
 
 	spandel.addEventListener("click",targetDelete);
 	spancheck.addEventListener("click",targetCheck);
-	getInput.value = "";
-
+	
 }
 
-addButton.addEventListener("click", create);
+
+// Create function: creates the list item along with the check sign and delete sign. adds event listeners on the signs..
+const createNew = () => {
+	createElement(getInput.value);
+	saveItems(getInput.value);
+	getInput.value = "";
+}
+
+addButton.addEventListener("click", createNew);
