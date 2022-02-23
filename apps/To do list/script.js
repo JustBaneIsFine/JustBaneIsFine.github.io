@@ -80,7 +80,37 @@ const targetDelete = (e) => {
 
 	var result = confirm("Do you want to delete this task:  " + content);
 
-	if (result === true){delme.parentNode.parentNode.remove()};
+	if (result === true){
+		var id = delme.parentNode.parentNode.id;
+
+		storedList.forEach(x => {
+
+				if(x.id === id){
+					const index = storedList.findIndex(x => x.id === id);
+					console.log(index);
+					storedList.splice(index, 1);
+					storage.setItem("list", JSON.stringify(storedList));
+				}
+
+			}
+		)
+
+
+
+
+
+		delme.parentNode.parentNode.remove();
+
+
+
+	};
+
+
+
+
+
+
+
 };
 
 // The same as above, except it toggles the class of the element so it checks-out
