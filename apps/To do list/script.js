@@ -1,5 +1,6 @@
 const storage = window.localStorage;
 const addButton = document.getElementById("addButton");
+const clearButton = document.getElementById("clearButton");
 const getInput = document.getElementById("inputform");
 const main = document.getElementById("main");
 var storedList = JSON.parse(storage.getItem("list"));
@@ -181,4 +182,20 @@ const createNew = () => {
 	getInput.value = "";
 }
 
+
+const deleteList = () =>
+	{	
+		const answer = confirm("Are you sure you want to delete everything? This can't be reverted");
+		
+		if (answer === true)
+		{
+			storedList = null;
+			storage.removeItem("list");
+			document.location.reload();
+		};
+
+
+	}
+
 addButton.addEventListener("click", createNew);
+clearButton.addEventListener("click", deleteList);
