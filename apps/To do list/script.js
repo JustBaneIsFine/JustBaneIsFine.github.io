@@ -2,185 +2,180 @@ const storage = window.localStorage;
 const addButton = document.getElementById("addButton");
 const clearButton = document.getElementById("clearButton");
 const getInput = document.getElementById("inputform");
-const main = document.getElementById("main");
+const contentBox = document.getElementById("contentBox");
+
+//the stored list of items is turned from string to a JS object.
 var storedList = JSON.parse(storage.getItem("list"));
 
-//code looks like cabbage curently.. But i will refactor it as soon as everything is working as desired..
-//left to do: delete function and code refactoring..
+// on page load, delete input entry and load the items from storage.
+window.onload = () => 
+	{
+		// getInput.value = "";
+		loadItems();
 
-window.onload = () => {
-	getInput.value = "";
-	loadItems();
+	}	
 
-}	
+//repeatable code block
+	const createEl = () => document.createElement("span");
 
-const loadItems = () => {
-	if (storedList != null){
-	storedList.forEach(x => {
+	//create a span with check and delete sign
+	//append everything together for a full element
 
-		const newLi = document.createElement("li");
-		var id = x.id;
-		newLi.setAttribute("id", id);
-		newLi.innerHTML = x.text;
-		const createEl = () => document.createElement("span");
-
-		const spanbox = createEl();
-		spanbox.setAttribute("id", "box");
-		const spancheck = createEl();
-		spancheck.setAttribute("class", "checkSign");
-		spancheck.innerHTML = "o";
-		const spandel = createEl();
-		spandel.setAttribute("class", "deleteSign");
-		spandel.innerHTML = "x";
-
-
-		spanbox.appendChild(spancheck);
-		spanbox.appendChild(spandel);
-		newLi.appendChild(spanbox);
-
-		main.appendChild(newLi)
-
-		spandel.addEventListener("click",targetDelete);
-		spancheck.addEventListener("click",targetCheck);
-
-		if (x.checked === "yes"){
-			console.log("its a yES");
-			newLi.classList.add("done");
-		}
-
-
-	})}
-
-
-
-}
-
-const saveItems = (value,id) => {
-	if (storedList === null){
-		storage.setItem("list", JSON.stringify([{"text": value, "checked":"no", "id":id}]));
-	} else {
-		const newobject = {"text": value, "checked": "no", "id":id};
-		newList = storedList.concat(newobject);
-		storage.setItem("list", JSON.stringify(newList));
+	const createSpan = (newLi) => 
+	{
+				const spanbox = createEl();
+				spanbox.setAttribute("id", "box");
+				const spancheck = createEl();
+				spancheck.setAttribute("class", "checkSign");
+				spancheck.innerHTML = "o";
+				const spandel = createEl();
+				spandel.setAttribute("class", "deleteSign");
+				spandel.innerHTML = "x";
+				spanbox.appendChild(spancheck);
+				spanbox.appendChild(spandel);
+				newLi.appendChild(spanbox);
+				contentBox.appendChild(newLi)
+				spandel.addEventListener("click",targetDelete);
+				spancheck.addEventListener("click",targetCheck);
 	}
 
-	storedList =  JSON.parse(storage.getItem("list"));
-
-}
+//repeatable code block
 
 
+const loadItems = () => 
+	{
+		if (storedList != null)
+		{
+			storedList.forEach(x => 
+			{
+				//for each list object, create a li element and add id + text to it.
+				const newLi = document.createElement("li");
+				var id = x.id;
+				newLi.setAttribute("id", id);
+				newLi.innerHTML = x.text;
 
-//if delete sign is clicked, this function runs and finds the parent element of the target
-//after confirming the delete it deletes it obviously 
-const targetDelete = (e) => {	
+				createSpan(newLi);
 
-	const delme = e.target;
-	const badcontent = delme.parentNode.parentNode.textContent;
-	const content = badcontent.slice(0,-2);
-
-
-	var result = confirm("Do you want to delete this task:  " + content);
-
-	if (result === true){
-		var id = delme.parentNode.parentNode.id;
-
-		storedList.forEach(x => {
-
-				if(x.id === id){
-					const index = storedList.findIndex(x => x.id === id);
-					console.log(index);
-					storedList.splice(index, 1);
-					storage.setItem("list", JSON.stringify(storedList));
+				//if checked in store, also check it in contentBox..
+				if (x.checked === "yes")
+				{
+					newLi.classList.add("done");
 				}
 
-			}
-		)
+			})
+		}
 
+	};
 
+const saveItems = (value,id) => 
+	{
+		if (storedList === null)
+		{
+			storage.setItem("list", JSON.stringify([{"text": value, "checked":"no", "id":id}]));
+		} 
+		else 
+		{
+			const newobject = {"text": value, "checked": "no", "id":id};
+			newList = storedList.concat(newobject);
+			storage.setItem("list", JSON.stringify(newList));
+		}
 
-
-
-		delme.parentNode.parentNode.remove();
-
-
+		storedList =  JSON.parse(storage.getItem("list"));
 
 	};
 
 
 
+//if delete sign is clicked, this function runs and finds the parent element of the target
+//after confirming the delete it deletes it obviously 
+const targetDelete = (e) => 
+	{	
 
+		//find the targeted element
 
+		const delme = e.target;
+		const badcontent = delme.parentNode.parentNode.textContent;
+		// get the text content  (used only for the confirm window..)
+		const content = badcontent.slice(0,-2);
+		var result = confirm("Do you want to delete this task:  " + content);
 
+		// If confirmed, finds the element id
+		if (result === true)
+		{
+			var id = delme.parentNode.parentNode.id;
 
-};
+			//then for each object it compares the id of the element with the object id
+			storedList.forEach(x => 
+			{
+					if(x.id === id)
+					{
+						//once the element id and object id match
+					    //it finds the index of the object and deletes that object from the list.
+					    //then we update the storage to the new list without that object
+						const index = storedList.findIndex(x => x.id === id);
+						storedList.splice(index, 1);
+						storage.setItem("list", JSON.stringify(storedList));
+					}
 
-// The same as above, except it toggles the class of the element so it checks-out
-const targetCheck = (e) => {	
-	const check = e.target;
-	const checkme = check.parentNode.parentNode;
-	checkme.classList.toggle("done");
-	var id = checkme.id;
+			})
+		//and finaly we delete the actual element from the contentBox
+		delme.parentNode.parentNode.remove();
+		};
+	};
 
-		if (checkme.classList[0] === "done"){
-
-			storedList.forEach(x => { if (x.id === id){
-				console.log(x.checked,"checked");
-				x.checked = "yes";
-			}});
-		
-
-		} else {
+// Checks the targeted task
+const targetCheck = (e) => 
+	{	
+		const check = e.target;
+		const checkme = check.parentNode.parentNode;
+		checkme.classList.toggle("done");
+		var id = checkme.id;
 			
-			//do this
-			storedList.forEach(x => { if (x.id === id){
-				// do something..
-				x.checked = "no";
-				console.log("it ran NO");
-
-			}})
-		}
-
-	storage.setItem("list", JSON.stringify(storedList));
-	console.log(JSON.parse(storage.getItem("list")));
-};
-
-
-const createElement = (value) => {
-
-	const newLi = document.createElement("li");
-	var id = Math.random().toString(16).slice(2);
-	newLi.setAttribute("id", id);
-	newLi.innerHTML = value;
-	const createEl = () => document.createElement("span");
-
-	const spanbox = createEl();
-	spanbox.setAttribute("id", "box");
-	const spancheck = createEl();
-	spancheck.setAttribute("class", "checkSign");
-	spancheck.innerHTML = "o";
-	const spandel = createEl();
-	spandel.setAttribute("class", "deleteSign");
-	spandel.innerHTML = "x";
+			//matches the target id and store id and checks/uncheks it in the storage
+			if (checkme.classList[0] === "done")
+			{
+				storedList.forEach(x => 
+					{
+					 if (x.id === id)
+					 {x.checked = "yes";}
+					}
+				);
+			} 
+			else 
+			{
+				storedList.forEach(x => 
+					{ 
+					 if (x.id === id)
+					 {x.checked = "no";}
+					}
+				)
+			}
+		//updates the store to the new list (with checked/unchecked object);
+		storage.setItem("list", JSON.stringify(storedList));
+	};
 
 
-	spanbox.appendChild(spancheck);
-	spanbox.appendChild(spandel);
-	newLi.appendChild(spanbox);
+const createElement = (value) => 
+	{
 
-	main.appendChild(newLi)
+		const newLi = document.createElement("li");
+		var id = Math.random().toString(16).slice(2);
+		newLi.setAttribute("id", id);
+		newLi.innerHTML = value;
+		//add snipet to function
 
-	spandel.addEventListener("click",targetDelete);
-	spancheck.addEventListener("click",targetCheck);
- 	saveItems(value,id);
-	
-}
+		createSpan(newLi);
+	 	saveItems(value,id);
+		
+	}
 
 
 // Create function: creates the list item along with the check sign and delete sign. adds event listeners on the signs..
-const createNew = () => {
-	createElement(getInput.value);
-	getInput.value = "";
-}
+const createNew = () => 
+	{
+		createElement(getInput.value);
+		getInput.value = "";
+	}
 
 
 const deleteList = () =>
@@ -196,6 +191,7 @@ const deleteList = () =>
 
 
 	}
+
 
 addButton.addEventListener("click", createNew);
 clearButton.addEventListener("click", deleteList);
