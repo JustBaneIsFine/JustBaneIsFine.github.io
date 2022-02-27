@@ -104,20 +104,12 @@ const targetDelete = (e) =>
 		{
 			var id = delme.parentNode.parentNode.id;
 
-			//then for each object it compares the id of the element with the object id
-			storedList.forEach(x => 
-			{
-					if(x.id === id)
-					{
-						//once the element id and object id match
-					    //it finds the index of the object and deletes that object from the list.
-					    //then we update the storage to the new list without that object
-						const index = storedList.findIndex(x => x.id === id);
-						storedList.splice(index, 1);
-						storage.setItem("list", JSON.stringify(storedList));
-					}
-
-			})
+			//then finds the index of that id in storage and deletes it, then we update the list and thats it..
+			const index = storedList.findIndex(x => x.id === id);
+			storedList.splice(index, 1);
+			storage.setItem("list", JSON.stringify(storedList));
+			
+			
 		//and finaly we delete the actual element from the contentBox
 		delme.parentNode.parentNode.remove();
 		};

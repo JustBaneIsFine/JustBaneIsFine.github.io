@@ -1,24 +1,42 @@
-/ todays stats
+We need to store data by weeks when getting the weekly status change..
+So we need to check each entry date and store it by weeks..
+so week 1, week 2, week 3 etc..
 
-1. Current weight
-2. Weight change from previous day
-3. distance from goal weight
-4. add data (popup);
-5. change goal
+then we can pull out the numbers from week 1 and 2, and get the average change.. etc.
 
-
-
-	
-1.This week change (from prevous week (average))
-2.This month change (from previous month (average) )
-3.Total change 
-
-/stats
+what happens when we need to compare week 1 with the previous week (week 5 or 4 of previous month)
+Well we will have the data from the prevous month still in week 4 or 5 since we didn't overwrite it..
 
 
+We also need to save these averages for a yearly tracking cycle..
+so when we check for monthly changes we will store the average for each month inside a yearly storage.
+then at the end of year, we average these numbers and get the 
 
-history that contains: (date, weightchange from previous day, weight on that day)
+
+I could also store the week number in the entry itself..
+When i create it, i run the get week function and store that number as well..
+
+Might be better than to check each one at once..
+not only that.. i will have to check each one every time i add another entry..
+
+So instead of that..I will add the date upon entry creation..
+and then when i need to update it, i just collect all weeks that i need and combine..
 
 
+So i need to store what..
+In the storage object of each element, next to id i need to also have week number and month number..
 
-If change === closer to goal than previous, color = green, else red.
+so.. "weekNum": ex. 2 , "monthNum" : ex. 5 , "yearNum"
+
+Also, new storage place will hold all the averages..
+as well as each month
+ex. newItem("Averages")
+
+
+	"monthlyAverage": ex. +23 or -42
+	"yearlyAverage" : ex. +32 or -34
+Then we compare the old yearlyAverage with the new one..
+as well as the monthly average
+
+Creation of new element and deletion of element will cause the update of monthly and yearly 
+average both in storage and the STATUS showcase

@@ -1,6 +1,5 @@
 const getIt = (x) => {return document.getElementById(x)};
 
-
 const addButton = getIt("addButton");
 const changeButton = getIt("changeButton");
 const statusWeight = getIt("statusWeight");
@@ -11,13 +10,178 @@ const statusMonth = getIt("statusMonth");
 const statusTotalChange = getIt("statusTotalChange");
 const statusGoal = getIt("statusGoal");
 const historyList = getIt("list");
-const date = new Date();
+var date = new Date();
 const labelHistory = getIt("labelhistory")
+const storage = window.localStorage;
+var storageList = JSON.parse(storage.getItem("list"));
+var storageAverage = JSON.parse(storage.getItem("average"));
+
+window.onload = () => 
+	{
+		loadItems();
+		loadStatus();
+	}
+
+
+const countThis = (a,b) => 
+	{
+		var first;
+		var second;	
+		first = parseInt(a);
+		second = parseInt(b);
+
+		return first+second;
+
+}
+
+const loadItems = () => 
+	{
+		
+
+		if (storageList != null){
+				storageList.forEach(x => 
+				{
+					createFromStorage(x.date, x.change, x.weight,x.id);
+				})}
+
+		statusGoal.innerHTML = JSON.parse(storage.getItem("goal"))[0].goal;
+
+		
+
+	}
+
+
+
+const getWeekOfMonth = (date) => {
+    let adjustedDate = date.getDate() + date.getDay(); 
+    let prefixes = ['0', '1', '2', '3', '4', '5'];
+    // IMPORTANT!!!
+    // i am having trouble understanding what this return code does.. Need to investigate furter!!!
+    return (parseInt(prefixes[0 | adjustedDate / 7])+1);
+}
+
+
+
+const loadStatus = () => 
+	{
+		var currentWeekNum = getWeekOfMonth(date);
+		var currentMonthNum = (date.getMonth()+1);
+		const child = historyList.getElementsByTagName("li")[1];
+		try {
+			if (child === undefined || child === null){
+				statusWeight.innerHTML = 0;
+				statusChange.innerHTML = 0;
+				statusFromGoal.innerHTML = 0;
+			} else {
+		const childChange = child.children[1].innerHTML;
+		const childWeight = child.children[2].innerHTML;
+		statusWeight.innerHTML = childWeight;
+		statusChange.innerHTML = childChange;
+		statusGoal.innerHTML = JSON.parse(storage.getItem("goal"))[0].goal;
+		statusFromGoal.innerHTML = statusGoal.innerHTML - childWeight;
+
+		}
+		} catch(e) {
+		}
+
+		if (storageAverage === null){
+			statusWeek.innerHTML = 0;
+			statusMonth.innerHTML = 0;
+			statusTotalChange.innerHTML = 0;
+			} else {
+
+				// compare add numbers and save to set item"average" in this format: 
+
+			}
+		
+			var weekCount = 0;
+			var monthCount = 0;
+			var totalCount = 0;
+
+			storageList.forEach(x => 
+			{
+					if (x.weekNum === currentWeekNum && x.monthNum === currentMonthNum){
+						weekCount = parseInt(x.change) + weekCount;
+					}
+
+					if (x.monthNum === currentMonthNum){
+						monthCount = parseInt(x.change) + monthCount;
+					}
+
+					if (true){
+						totalCount = parseInt(x.change) + totalCount;
+					}
+
+			})
+			var avStore = [{"averageWeek": weekCount,"averageMonth": monthCount, "averageTotal":totalCount}]
+
+			storage.setItem("storageAverage", JSON.stringify(avStore));
+			//set the statuses below from storage.. GET storage and set each status from storage..
+			//Also after this, think about if this is the best way to solve this..
+			//Should you do this on each refresh or just when updating the list ex. removing or adding entries..
+			statusWeek.innerHTML = weekCount;
+			statusMonth.innerHTML = monthCount;
+			statusTotalChange.innerHTML = totalCount;
+	}
+
+const deleteHandler = (e) => {
+	const itemId = e.target.id;
+	const itemContent = e.target.children[2].innerHTML;
+
+	const result = confirm("Are you sure you want to delete this entry? >> "+itemContent+" <<");
+
+	if (result===true)
+	{
+		
+		const index = storageList.findIndex(x => x.id === itemId);
+		storageList.splice(index,1);
+		storage.setItem("list", JSON.stringify(storageList));
+
+
+		e.target.remove();
+
+		loadStatus();
+
+	};
+
+
+
+}
+
+const createFromStorage = (date,change,weight,id) => 
+	{
+		const li = document.createElement("li");
+		li.classList.add("historyComp");
+		li.addEventListener("click", deleteHandler);
+		li.setAttribute("id",id);
+
+		const labelDate = document.createElement("label");
+		const labelChange = document.createElement("label");
+		const labelWeight = document.createElement("label");
+
+		labelDate.setAttribute("id","date");
+		labelChange.setAttribute("id","changeh");
+		labelWeight.setAttribute("id","weight");
+
+
+		labelDate.innerHTML = date;
+		labelChange.innerHTML = change;
+		labelWeight.innerHTML = weight;
+
+
+		li.append(labelDate);
+		li.append(labelChange);
+		li.append(labelWeight);
+		labelHistory.insertAdjacentElement('afterend', li);
+	}
+
 
 const createElement = (input,old) => {
 	const li = document.createElement("li");
 	li.classList.add("historyComp");
-
+	li.addEventListener("click", deleteHandler);
+	let id =  Math.random().toString(16).slice(2);
+	li.setAttribute("id",id);
 	const labelDate = document.createElement("label");
 	const labelChange = document.createElement("label");
 	const labelWeight = document.createElement("label");
@@ -25,9 +189,9 @@ const createElement = (input,old) => {
 	labelDate.setAttribute("id","date");
 	labelChange.setAttribute("id","changeh");
 	labelWeight.setAttribute("id","weight");
-
-
-	labelDate.innerHTML = date.getDay() + "/" + date.getMonth() + 1 + "/" + date.getFullYear();
+	const newDate = date;
+	const thisDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+	labelDate.innerHTML = thisDate;
 	labelWeight.innerHTML = input;
 	let oldWeight = statusWeight.innerHTML;
  	let result = input-old;
@@ -44,7 +208,38 @@ const createElement = (input,old) => {
 	li.append(labelWeight);
 
 
-labelHistory.insertAdjacentElement('afterend', li);
+	const thisDateWeek = getWeekOfMonth(newDate);
+
+
+
+
+
+ labelHistory.insertAdjacentElement('afterend', li);
+
+	let newObject = 
+	{
+		"id": id,
+		"date": labelDate.innerHTML,
+		"change": labelChange.innerHTML,
+		"weight": labelWeight.innerHTML,
+		"weekNum" : thisDateWeek ,
+		"monthNum": (date.getMonth() + 1),
+		"yearNum": date.getFullYear()
+	};
+
+
+	if(storageList === null)
+		{
+			storage.setItem("list",JSON.stringify([newObject]));
+		}
+		else 
+		{
+			let newList = storageList.concat(newObject);
+			storage.setItem("list",JSON.stringify(newList));
+		}
+
+	storageList = JSON.parse(storage.getItem("list"));
+ loadStatus();
 }
 
 
@@ -70,10 +265,11 @@ const addHandler = () => {
 const changeHandler = () => {
 	let current = statusWeight.innerHTML;
 
-
 	let inputGoal =  window.prompt("please enter your desired weight");
 	statusGoal.innerHTML = inputGoal;
+	storage.setItem("goal",JSON.stringify([{"goal": inputGoal}]));
 	statusFromGoal.innerHTML = inputGoal-current;
+
 
 };
 
