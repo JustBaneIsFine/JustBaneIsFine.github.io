@@ -1,0 +1,22 @@
+Spell check not used, reader beware
+
+
+Add, edit, delete, search for recipes
+ingredients, description and how to..
+
+Clicking on add recipe switches to a different page for entering data..
+Clicking on edit also switches to a different page for editing existing data.
+
+Has to have storage of the recipe, it's ingredients as well as a description of how to make it.
+
+Which means storage will look like this:
+
+Recipes:
+[{"recipeName": "Lemon Pie", 
+"Ingredients": ["lemon", "pie", "sugar"], 
+"howTo": "Mix lemon, pie and sugar..Also use magic!" },
+{"recipeName": "another recipe"}]........
+
+Homepage will show all the recipes..
+Recipes will be clickable from homepage and when searching, clicking on recipe(element) will display all the info on that recipe
+also while viewing it, you can check/uncheck ingredients
