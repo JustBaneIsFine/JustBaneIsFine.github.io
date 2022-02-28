@@ -34,6 +34,42 @@ const countThis = (a,b) =>
 
 }
 
+const calculateAverages = () => 
+			{
+
+				var currentWeekNum = getWeekOfMonth(date);
+				var currentMonthNum = (date.getMonth()+1);
+				var currentYearNum = date.getFullYear();
+				var weekCount = 0;
+				var monthCount = 0;
+				var totalCount = 0;
+
+				storageList.forEach(x => 
+				{
+						if (x.weekNum === currentWeekNum && x.monthNum === currentMonthNum)
+						{
+							weekCount = parseInt(x.change) + weekCount;
+						}
+
+						if (x.monthNum === currentMonthNum && x.yearNum === currentYearNum)
+						{
+							monthCount = parseInt(x.change) + monthCount;
+						}
+
+						if (true)
+						{
+							totalCount = parseInt(x.change) + totalCount;
+						}
+
+				})
+
+				var avStore = [{"averageWeek": weekCount,"averageMonth": monthCount, "averageTotal":totalCount}]
+
+				storage.setItem("average", JSON.stringify(avStore));
+				storageAverage = JSON.parse(storage.getItem("average"));
+			}
+
+
 const loadItems = () => 
 	{
 		
@@ -44,7 +80,8 @@ const loadItems = () =>
 					createFromStorage(x.date, x.change, x.weight,x.id);
 				})}
 
-		statusGoal.innerHTML = JSON.parse(storage.getItem("goal"))[0].goal;
+		if (storage.getItem("goal") != null)
+			{statusGoal.innerHTML = JSON.parse(storage.getItem("goal"))[0].goal;}
 
 		
 
@@ -64,8 +101,7 @@ const getWeekOfMonth = (date) => {
 
 const loadStatus = () => 
 	{
-		var currentWeekNum = getWeekOfMonth(date);
-		var currentMonthNum = (date.getMonth()+1);
+		
 		const child = historyList.getElementsByTagName("li")[1];
 		try {
 			if (child === undefined || child === null){
@@ -88,40 +124,16 @@ const loadStatus = () =>
 			statusWeek.innerHTML = 0;
 			statusMonth.innerHTML = 0;
 			statusTotalChange.innerHTML = 0;
+			console.log("it's null");
 			} else {
-
-				// compare add numbers and save to set item"average" in this format: 
-
-			}
+				console.log("it's setting");
+			statusWeek.innerHTML = JSON.parse(storage.getItem("average"))[0].averageWeek;
+			statusMonth.innerHTML = JSON.parse(storage.getItem("average"))[0].averageMonth;
+			statusTotalChange.innerHTML = JSON.parse(storage.getItem("average"))[0].averageTotal;
 		
-			var weekCount = 0;
-			var monthCount = 0;
-			var totalCount = 0;
+			}
 
-			storageList.forEach(x => 
-			{
-					if (x.weekNum === currentWeekNum && x.monthNum === currentMonthNum){
-						weekCount = parseInt(x.change) + weekCount;
-					}
-
-					if (x.monthNum === currentMonthNum){
-						monthCount = parseInt(x.change) + monthCount;
-					}
-
-					if (true){
-						totalCount = parseInt(x.change) + totalCount;
-					}
-
-			})
-			var avStore = [{"averageWeek": weekCount,"averageMonth": monthCount, "averageTotal":totalCount}]
-
-			storage.setItem("storageAverage", JSON.stringify(avStore));
-			//set the statuses below from storage.. GET storage and set each status from storage..
-			//Also after this, think about if this is the best way to solve this..
-			//Should you do this on each refresh or just when updating the list ex. removing or adding entries..
-			statusWeek.innerHTML = weekCount;
-			statusMonth.innerHTML = monthCount;
-			statusTotalChange.innerHTML = totalCount;
+			
 	}
 
 const deleteHandler = (e) => {
@@ -139,7 +151,7 @@ const deleteHandler = (e) => {
 
 
 		e.target.remove();
-
+		calculateAverages();
 		loadStatus();
 
 	};
@@ -239,7 +251,11 @@ const createElement = (input,old) => {
 		}
 
 	storageList = JSON.parse(storage.getItem("list"));
- loadStatus();
+
+	calculateAverages();
+	loadStatus();
+	
+ 	
 }
 
 
