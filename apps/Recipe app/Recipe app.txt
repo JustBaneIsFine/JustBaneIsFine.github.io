@@ -12,7 +12,8 @@ Delete ingredient + update storage
 Edit recipe       + update storage
 Search for recipes (big one)
 Load recipes 
-
+href handler..
+<a href will hold link to edit page with ?recipe.id..>
 
 
 
