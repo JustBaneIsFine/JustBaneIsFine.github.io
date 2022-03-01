@@ -1,20 +1,65 @@
 Spell check not used, reader beware
 
 
-Add, edit, delete, search for recipes
-ingredients, description and how to..
+Add, edit, delete, search, update recipes
 
-Clicking on add recipe switches to a different page for entering data..
-Clicking on edit also switches to a different page for editing existing data.
+needed functions and such:  
+Add recipe        + update storage
+Add ingredient    + update storage
+Update recipe     + update storage
+Delete recipe     + update storage
+Delete ingredient + update storage
+Edit recipe       + update storage
+Search for recipes (big one)
+Load recipes 
+
+
+
+
+1. add recipe function..
+opens new page and clears all the inputs just in case..
+
+2. add ingredient
+adds to an ingredient array, and at each add or remove of ingredient, we load this array(show it)
+it is not saved to storage until we click the update recipe..
+
+3. update recipe
+takes all the input, ingredients, text, name
+turns it into an object and saves it to storage
+updates storageList in order to display the new recipe at index as well..
+saved based on recipe ID..
+returns to index page
+
+4. delete recipe
+Deletes the object from storage and returns to index page
+
+5. delete ingredient
+does the same as add ingredient except the reverse..
+
+6. Edit recipe
+opens new page and loads all the recipe information, allowing one to edit it..
+then update recipe
+
+7. Search for recipes 
+Well, searches for recipes, compares the search input to storage.recipeName in real time..
+each time a letter (event) is added/deleted, it compares and loads ONLY the things matching that..
+
+8. load recipes
+load based on search field..
+if searchField empty, load all
+else load the matching..
+
+
+
 
 Has to have storage of the recipe, it's ingredients as well as a description of how to make it.
 
-Which means storage will look like this:
+Storage object example >>>
 
-Recipes:
 [{"recipeName": "Lemon Pie", 
 "Ingredients": ["lemon", "pie", "sugar"], 
-"howTo": "Mix lemon, pie and sugar..Also use magic!" },
+"howTo": "Mix lemon, pie and sugar..Also use magic!",
+"checkStatus": checked or unchecked},
 {"recipeName": "another recipe"}]........
 
 Homepage will show all the recipes..
