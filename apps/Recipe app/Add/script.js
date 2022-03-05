@@ -2,97 +2,109 @@ const getIt = (x) => {return document.getElementById(x)};
 const storage = window.localStorage;
 const storageList = JSON.parse(storage.getItem("recipeApp"));
 
-const searchInput = getIt("searchInput");
-const displayRecipes = getIt("recipeList");
-const addButton = getIt("addRecipe");
-
-window.onload = () => {
+// getting all the elements..
+const nameInput = getIt("inputName");
+const howToInput = getIt("inputArea");
+const ingredientInput = getIt("inputIngredient");
+const addIngButton = getIt("addIngredientButton");
+const createButton = getIt("createRecipeButton");
+const deleteButton = getIt("deleteRecipeButton");
+const ingredientList = getIt("ingredientList");
+window.onload  = () => {
 	clearInputs();
-	loadItems();
 }
 
-
-const clearInputs = () => {
-	searchInput.value = "";
-}
-
-const loadItems = (items) => {
-	displayRecipes.innerHTML = "";
-
-	if (items === null || items === undefined)
+const addIngHandler = () => 
 	{
-		//if there are no filtered recipes, load all recipes
-			try {storageList.forEach(x => 
-			{
-				createEl(x.id, x.recipeName, x.ingredients, x.check);	// everything apart from name and id is probably not needed here
-			})
-			} catch(e){console.log(e)}
-
-	} else 
-	{
-			console.log(items);
-			try {items.forEach(x => {   
+		const value = ingredientInput.value;
+		if (value != "" ){
+			createIngredient(value);
+			ingredientInput.value = "";
+		}
 
 
-				storageList.forEach(c => {
-					if (x === c.id){
-						createEl(c.id,c.recipeName,c.ingredients,c.check) // everything apart from name and id is probably not needed here
-					}
-				})
-					})
-			
-			} catch(e){console.log(e)}
 
 	}
 
+const createIngredient = (text) => 
+	{
+		const ce = (x) => {return document.createElement(x)};
+
+		const div = ce("div");
+		div.setAttribute("id", "ingredientContent");
+
+		const textLabel = ce("label");
+		textLabel.setAttribute("id","textLabel");
+		textLabel.innerHTML = text;
+
+		const checkBox = ce("input");
+		checkBox.setAttribute("type","checkbox");
+		checkBox.setAttribute("id","checkBox");
+
+		const deleteLabel = ce("label");
+		deleteLabel.setAttribute("id","deleteLabel");
+		deleteLabel.innerHTML = "X";
+
+		div.appendChild(textLabel);
+		div.appendChild(checkBox);
+		div.appendChild(deleteLabel);
+
+		ingredientList.appendChild(div);
+
+		deleteLabel.addEventListener("click", deleteIngredient);
+
+
+	// <div id="ingredientContent"> 
+	// 		<label id="textLabel">text</label>
+	// 		<input id="checkBox" type="checkbox"> 
+	// 		<label id="deleteLabel">X</label>
+	// 	</div>
+
+
 	}
 
 
-const createEl = (id,name,text, ingredients, check) => { // everything apart from name and id is probably not needed here
+const createHandler = () => 
+	{
+		const name = nameInput.value;
+		const how = howToInput.value;
 
-	const href = "Edit/index.html"+"?"+id;
-	const a = document.createElement("a");
-	a.setAttribute("href", href); 
-	const h = document.createElement("h4");
-	h.setAttribute("class","recipeItem");
-	h.setAttribute("id",id);
-	h.innerHTML = name;
+		ingredientList.childNodes.forEach(x => console.log(x));
 
 
-
-	a.appendChild(h);
-	displayRecipes.appendChild(a);
-
-
-}
-
-const addHandler = () => {
-	window.location = "Add/index.html";
-
-}
+			// THIS IS WHERE YOU LEFT OFF <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+			// save ingredient name and check status in an object 
+			// together with all other data (recipe name, text)
+			// and store it..
 
 
-const searchHandler = (e) => {
-	displayRecipes.innerHTML = "";	//clear current displayed items
+
+		//window.location = "../index.html";
+	}
 
 
-	const search = searchInput.value.toLowerCase();
-	const idList = []; // create new empty array
-	try {
-		storageList.forEach(x => 
-			{
-				if (x.recipeName.toLowerCase().includes(search))
-				{
-					idList.push(x.id);
+const deleteHandler = () => 
+	{
+		const result = confirm("Are you sure you want to delete all the data?");
+		if (result === true){location.reload()};
+		
+	}
 
-				} // for each recipe in storage, compare searched item with that recipe
-				  // if matches, push to idList
-			})
-	} catch {}
-	
-	loadItems(idList);	// then load that list 
+const deleteIngredient = () => 
+	{
+		const element = event.target.parentElement;
+		element.remove();
 
-};
-	
-addButton.addEventListener("click", addHandler);
-searchInput.addEventListener("input", searchHandler);
+	}
+
+const clearInputs = () => 
+	{
+		nameInput.value = "";
+		ingredientInput.value = "";
+		howToInput.value = "";
+		ingredientList.innerHTML = "";
+	}
+
+addIngButton.addEventListener("click", addIngHandler);
+createButton.addEventListener("click", createHandler);
+deleteButton.addEventListener("click", deleteHandler);

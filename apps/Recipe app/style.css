@@ -65,4 +65,39 @@ textArea {
 	width: 40%;
 	height: 200px;
 }
+button{
 
+}
+#addIngredientButton{
+	display: flex;
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+label{
+	font-size: 1.5rem;
+	margin: 20px;
+	background-color: rgba(55, 55, 86, 0.1);
+	border-radius: 20px;
+	padding: 10px;
+}
+
+#ingredientContent {
+	margin: 20px;
+}
+
+
+
+#checkBox {
+	width: auto;
+	margin: auto;
+}
+
+#deleteLabel:hover {
+	cursor: pointer;
+}
+
+#deleteLabel:active {
+	cursor: pointer;
+}
