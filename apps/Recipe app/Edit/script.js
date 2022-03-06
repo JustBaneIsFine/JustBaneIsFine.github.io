@@ -1,10 +1,7 @@
 const getIt = (x) => {return document.getElementById(x)};
 const storage = window.localStorage;
-
 var storageList = JSON.parse(storage.getItem("recipeApp"));
-
 if (storageList === null){storage.setItem("recipeApp",JSON.stringify([]))};
-
 
 // getting all the elements..
 const nameInput = getIt("inputName");
@@ -14,8 +11,31 @@ const addIngButton = getIt("addIngredientButton");
 const createButton = getIt("createRecipeButton");
 const deleteButton = getIt("deleteRecipeButton");
 const ingredientList = getIt("ingredientList");
+const id = window.location.search.substring(1);
+
 window.onload  = () => {
+	loadRecipe(id);
 	clearInputs();
+}
+
+const loadRecipe = (x) => {
+	storageList.forEach(x => 
+	{
+		while(x.id === id){
+
+			nameInput.value = x.name;
+			howToInput.value = x.how;
+
+			x.ingredients.forEach(i => {
+				createIngredient(i.name,i.check);
+			});
+
+
+		}
+
+	})
+
+
 }
 
 const addIngHandler = () => 
@@ -29,7 +49,7 @@ const addIngHandler = () =>
 
 	}
 
-const createIngredient = (text) => 
+const createIngredient = (text,checked) => 
 	{
 		const ce = (x) => {return document.createElement(x)};
 
@@ -56,25 +76,24 @@ const createIngredient = (text) =>
 
 		deleteLabel.addEventListener("click", deleteIngredient);
 
-										// IMPORTANT.. WE MUST HAVE RECIPE ID.. If two identical recipes exsist (accident or not), you can't delete one
-										// without affecting the other, so recipe ID is a must!
-
-	// <div id="ingredientContent"> 
-	// 		<label id="textLabel">text</label>
-	// 		<input id="checkBox" type="checkbox"> 
-	// 		<label id="deleteLabel">X</label>
-	// 	</div>
+										
 
 
 	}
 
-
-const createHandler = () => 
+// IMPORTANT! 
+// How to export a function.. WE can use most 0of this code from one file
+// instead of again declaring functions etc...
+const updateHandler = () => 
 	{	
-		const id = Math.random().toString(16).slice(2);
+
+		// create handler here will only update data..
+		// so ID stays the same..
+		// everything else we update..
 		const recipeName =  nameInput.value;
 		const how = howToInput.value;
 		const ingredients = [];
+		const id = window.location.search.substring(1); // search gets the parameter, substring deletes the "?";
 
 		//take each ingredient and it's status
 		// and push it as object to ingredients array..
@@ -83,7 +102,7 @@ const createHandler = () =>
 			{ 	const ingName = x.childNodes[0].innerHTML;
 				const check =  x.childNodes[1].checked;
 
-					ingredients.push({"name": ingName,"check": check});
+					ingredients.push({ingName,check});
 
 			});
 
@@ -133,5 +152,5 @@ const clearInputs = () =>
 	}
 
 addIngButton.addEventListener("click", addIngHandler);
-createButton.addEventListener("click", createHandler);
+createButton.addEventListener("click", updateHandler);
 deleteButton.addEventListener("click", deleteHandler);
