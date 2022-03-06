@@ -20,22 +20,21 @@ href handler..
 		1. add recipe function..
 		opens new page and clears all the inputs just in case.. 
 
-2. add ingredient
-adds to an ingredient array, and at each add or remove of ingredient, we load this array(show it)
-it is not saved to storage until we click the update recipe..
+		2. add ingredient
+		adds to an ingredient array, it is not saved to storage until we click the create recipe.
 
-3. update recipe
-takes all the input, ingredients, text, name
-turns it into an object and saves it to storage
-updates storageList in order to display the new recipe at index as well..
-saved based on recipe ID..
-returns to index page
+		3. update recipe
+		takes all the input, ingredients, text, name
+		turns it into an object and saves it to storage
+		updates storageList in order to display the new recipe at index as well..
+		saved based on recipe ID..
+		returns to index page
 
 4. delete recipe
 Deletes the object from storage and returns to index page
 
-5. delete ingredient
-does the same as add ingredient except the reverse..
+	5. delete ingredient
+	does the same as add ingredient except the reverse..
 
 6. Edit recipe
 opens new page and loads all the recipe information, allowing one to edit it..

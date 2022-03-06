@@ -1,6 +1,9 @@
 const getIt = (x) => {return document.getElementById(x)};
 const storage = window.localStorage;
-const storageList = JSON.parse(storage.getItem("recipeApp"));
+
+var storageList = JSON.parse(storage.getItem("recipeApp"));
+
+if (storageList === null){storage.setItem("recipeApp",JSON.stringify([]))};
 
 // getting all the elements..
 const nameInput = getIt("inputName");
@@ -21,7 +24,6 @@ const addIngHandler = () =>
 			createIngredient(value);
 			ingredientInput.value = "";
 		}
-
 
 
 	}
@@ -53,6 +55,8 @@ const createIngredient = (text) =>
 
 		deleteLabel.addEventListener("click", deleteIngredient);
 
+										// IMPORTANT.. WE MUST HAVE RECIPE ID.. If two identical recipes exsist (accident or not), you can't delete one
+										// without affecting the other, so recipe ID is a must!
 
 	// <div id="ingredientContent"> 
 	// 		<label id="textLabel">text</label>
@@ -65,21 +69,43 @@ const createIngredient = (text) =>
 
 
 const createHandler = () => 
-	{
-		const name = nameInput.value;
+	{	
+		const id = Math.random().toString(16).slice(2);
+		const recipeName =  nameInput.value;
 		const how = howToInput.value;
+		const ingredients = [];
 
-		ingredientList.childNodes.forEach(x => console.log(x));
+		//take each ingredient and it's status
+		// and push it as object to ingredients array..
+
+		ingredientList.childNodes.forEach(x => 
+			{ 	const ingName = x.childNodes[0].innerHTML;
+				const check =  x.childNodes[1].checked;
+
+					ingredients.push({ingName,check});
+
+			});
 
 
-			// THIS IS WHERE YOU LEFT OFF <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-			// save ingredient name and check status in an object 
-			// together with all other data (recipe name, text)
-			// and store it..
+			// create an object from the whole recipe
+			// so we can store it easly..
+			const newRecipeObject = {
+				"name": recipeName,
+				"how": how,
+				"ingredients": ingredients,
+				"id" : id
+			}
 
 
+			var newList = storageList.concat(newRecipeObject); // new list will include all previous recipes + this new one..
 
-		//window.location = "../index.html";
+			storage.setItem("recipeApp",JSON.stringify(newList)); // save this new list to storage
+
+			storageList = JSON.parse(storage.getItem("recipeApp"));	// and update our list for usage in javascript
+			console.log(storageList);
+
+
+		window.location = "../index.html";
 	}
 
 

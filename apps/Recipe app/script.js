@@ -22,16 +22,16 @@ const loadItems = (items) => {
 	if (items === null || items === undefined)
 	{
 		//if there are no filtered recipes, load all recipes
-			try {storageList.forEach(x => 
+			storageList.forEach(x => 
 			{
 				createEl(x.id, x.recipeName, x.ingredients, x.check);	// everything apart from name and id is probably not needed here
 			})
-			} catch(e){console.log(e)}
+			
 
 	} else 
 	{
 			console.log(items);
-			try {items.forEach(x => {   
+			items.forEach(x => {   
 
 
 				storageList.forEach(c => {
@@ -41,7 +41,6 @@ const loadItems = (items) => {
 				})
 					})
 			
-			} catch(e){console.log(e)}
 
 	}
 
@@ -79,17 +78,19 @@ const searchHandler = (e) => {
 	const search = searchInput.value.toLowerCase();
 	const idList = []; // create new empty array
 	try {
+		//for each stored recipe, we check if recipe includes search filter, if so, push it's id to list
 		storageList.forEach(x => 
 			{
 				if (x.recipeName.toLowerCase().includes(search))
 				{
 					idList.push(x.id);
-
-				} // for each recipe in storage, compare searched item with that recipe
-				  // if matches, push to idList
+										// for each recipe in storage, compare searched item with that recipe
+									  	// if matches, push to idList
+				} 
 			})
 	} catch {}
 	
+	// then loadItems with these id's..
 	loadItems(idList);	// then load that list 
 
 };
