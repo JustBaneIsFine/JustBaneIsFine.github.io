@@ -27,7 +27,7 @@ const loadRecipe = (id) => {
 			howToInput.value = x.how;
 
 			x.ingredients.forEach(i => {
-				createIngredient(i.name,i.check);
+				createIngredient(i.ingName,i.check);
 			});
 
 
@@ -143,7 +143,19 @@ const updateHandler = () =>
 const deleteHandler = () => 
 	{
 		const result = confirm("Are you sure you want to delete all the data?");
-		if (result === true){location.reload()};
+		if (result === true){
+
+			storageList.forEach(o => {
+				if (o.id === id){
+					const index = storageList.indexOf(o);
+					storageList.splice(index,1);
+				}
+			})
+
+			storage.setItem("recipeApp", JSON.stringify(storageList));
+
+			window.location = "../index.html";
+		};
 		
 	}
 
