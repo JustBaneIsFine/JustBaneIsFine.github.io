@@ -56,14 +56,7 @@ const createIngredient = (text) =>
 
 		deleteLabel.addEventListener("click", deleteIngredient);
 
-										// IMPORTANT.. WE MUST HAVE RECIPE ID.. If two identical recipes exsist (accident or not), you can't delete one
-										// without affecting the other, so recipe ID is a must!
-
-	// <div id="ingredientContent"> 
-	// 		<label id="textLabel">text</label>
-	// 		<input id="checkBox" type="checkbox"> 
-	// 		<label id="deleteLabel">X</label>
-	// 	</div>
+		
 
 
 	}
@@ -83,7 +76,7 @@ const createHandler = () =>
 			{ 	const ingName = x.childNodes[0].innerHTML;
 				const check =  x.childNodes[1].checked;
 
-					ingredients.push({"name": ingName,"check": check});
+					ingredients.push({"ingName": ingName,"check": check});
 
 			});
 
