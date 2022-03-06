@@ -103,7 +103,7 @@ const updateHandler = () =>
 			{ 	const ingName = x.childNodes[0].innerHTML;
 				const check =  x.childNodes[1].checked;
 
-					ingredients.push({ingName,check});
+					ingredients.push({"ingName":ingName,"check":check});
 
 			});
 
