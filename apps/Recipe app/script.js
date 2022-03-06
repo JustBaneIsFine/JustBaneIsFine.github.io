@@ -24,7 +24,7 @@ const loadItems = (items) => {
 		//if there are no filtered recipes, load all recipes
 			storageList.forEach(x => 
 			{
-				createEl(x.id, x.recipeName, x.ingredients, x.check);	// everything apart from name and id is probably not needed here
+				createEl(x.id, x.name, x.ingredients, x.check);	// everything apart from name and id is probably not needed here
 			})
 			
 
@@ -36,7 +36,7 @@ const loadItems = (items) => {
 
 				storageList.forEach(c => {
 					if (x === c.id){
-						createEl(c.id,c.recipeName,c.ingredients,c.check) // everything apart from name and id is probably not needed here
+						createEl(c.id,c.name,c.ingredients,c.check) // everything apart from name and id is probably not needed here
 					}
 				})
 					})

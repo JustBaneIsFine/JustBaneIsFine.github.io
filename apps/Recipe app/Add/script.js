@@ -1,9 +1,9 @@
 const getIt = (x) => {return document.getElementById(x)};
 const storage = window.localStorage;
 
-var storageList = JSON.parse(storage.getItem("recipeApp"));
 
-if (storageList === null){storage.setItem("recipeApp",JSON.stringify([]))};
+if (storage.getItem("recipeApp") === null){storage.setItem("recipeApp",JSON.stringify([]))};
+var storageList = JSON.parse(storage.getItem("recipeApp"));
 
 
 // getting all the elements..
