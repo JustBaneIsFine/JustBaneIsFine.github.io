@@ -49,7 +49,7 @@ const addIngHandler = () =>
 
 	}
 
-const createIngredient = (text,checked) => 
+const createIngredient = (text,checkedd) => 
 	{
 		const ce = (x) => {return document.createElement(x)};
 
@@ -63,6 +63,7 @@ const createIngredient = (text,checked) =>
 		const checkBox = ce("input");
 		checkBox.setAttribute("type","checkbox");
 		checkBox.setAttribute("id","checkBox");
+		checkBox.checked = checkedd;
 
 		const deleteLabel = ce("label");
 		deleteLabel.setAttribute("id","deleteLabel");
@@ -115,6 +116,16 @@ const updateHandler = () =>
 				"ingredients": ingredients,
 				"id" : id
 			}
+
+			//so i need to find this id and find the object index
+			// then delete it and push the new object..
+
+			storageList.forEach(o => {
+				if (o.id === id){
+					const index = storageList.indexOf(o);
+					storageList.splice(index,1);
+				}
+			})
 
 
 			var newList = storageList.concat(newRecipeObject); // new list will include all previous recipes + this new one..
