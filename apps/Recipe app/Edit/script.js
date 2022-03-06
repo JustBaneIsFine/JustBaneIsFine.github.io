@@ -18,7 +18,7 @@ window.onload  = () => {
 	clearInputs();
 }
 
-const loadRecipe = (x) => {
+const loadRecipe = (id) => {
 	storageList.forEach(x => 
 	{
 		if (x.id === id){
