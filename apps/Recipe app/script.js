@@ -81,7 +81,7 @@ const searchHandler = (e) => {
 		//for each stored recipe, we check if recipe includes search filter, if so, push it's id to list
 		storageList.forEach(x => 
 			{
-				if (x.recipeName.toLowerCase().includes(search))
+				if (x.name.toLowerCase().includes(search))
 				{
 					idList.push(x.id);
 										// for each recipe in storage, compare searched item with that recipe
