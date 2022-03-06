@@ -14,8 +14,8 @@ const ingredientList = getIt("ingredientList");
 const id = window.location.search.substring(1);
 
 window.onload  = () => {
-	loadRecipe(id);
 	clearInputs();
+	loadRecipe(id);
 }
 
 const loadRecipe = (id) => {
