@@ -21,7 +21,7 @@ window.onload  = () => {
 const loadRecipe = (x) => {
 	storageList.forEach(x => 
 	{
-		while(x.id === id){
+		if (x.id === id){
 
 			nameInput.value = x.name;
 			howToInput.value = x.how;
