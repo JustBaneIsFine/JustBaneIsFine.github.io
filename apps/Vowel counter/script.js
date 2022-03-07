@@ -19,7 +19,7 @@ const submitHandler = () => {
 
 
 
-	// The first way to do this.. 100x faster, but is it practicall when comparing to a lot more data?
+	// The first way to do this.. faster, but is it practicall when comparing to a lot more data?
 		// var t0 = performance.now();
 		// for (let i = 0;i < string.length; i++){
 		// 		if (string[i] === "a" || string[i] === "e" || string[i] === "i" || string[i] === "o" || string[i] === "u" ){
@@ -28,7 +28,7 @@ const submitHandler = () => {
 		// 	}
 		// var t1 = performance.now();
 
-	// the second way, better for comparing more data(no typing) , but 100x slower
+	// the second way, better for comparing more data(no typing) , but slower
 				var t0 = performance.now();
 				array.forEach(vowel => stringarray.forEach(x => {if (vowel === x){counter++;}}) )
 				var t1 = performance.now();
