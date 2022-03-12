@@ -7,6 +7,7 @@ body {
 }
 
 
+
 .left{grid-area:left;border: 1px solid #008F11;}
 
 .middle{grid-area:middle;border: 1px solid #008F11}
@@ -18,6 +19,12 @@ body {
 	display: grid;
 	grid-template-areas: 'left middle right';
 
+}
+@media only screen and (max-width: 900px) {
+ #grid{margin:0px;
+ 	display: inherit;
+ 	overflow-wrap: anywhere;
+ }
 }
 
 ul,li {
