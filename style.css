@@ -37,3 +37,10 @@ a {color: #00FF41; text-decoration: none;}
 
 li {margin-bottom:20px;}
 
+label{
+	font-size: 20px;	
+	border-bottom: 1px #00FF41 solid;
+	
+	}
+
+.label {text-align: center;}
