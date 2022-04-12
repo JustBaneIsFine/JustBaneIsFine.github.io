@@ -74,7 +74,7 @@ var currentShapeObj;
 var currentRotation;
 var rotationNum;
 var currentTopLeft;
-
+var potentialTopLeft;
 var canvasArray = createCanvasArray();
 
 //Create CanvasArray
@@ -298,29 +298,25 @@ var canvasArray = createCanvasArray();
 	//clears the previous rotation/movement
 	function clearPrevious()
 		{
-			var startPosition = canvasArray[currentTopLeft.x][currentTopLeft.y];
+			//var startPosition = canvasArray[currentTopLeft.x][currentTopLeft.y];
 			var rowStart = currentTopLeft.x;
 			var numStart = currentTopLeft.y;
 			var rowCount = 0;
 			var numCount = 0;
 			var shapeNum = currentShapeObj.num;
 
-			//What im trying to do here is simple
-			// compare the shapes side to side and say,
-			// if our block is 0 then we don't touch that block on the canvas, which might not be zero..
-			// that block might be from some other shape, and we don't want to delete that..
-
 			currentRotation.forEach(row =>{
 				row.forEach(num =>{ 
 					if (num === shapeNum)
 						{
-							if (isItZero(rowStart+rowCount,numStart+numCount))
+							if (!isItZero(rowStart+rowCount,numStart+numCount))
 								{canvasArray[rowStart+rowCount][numStart+numCount] = 0};
 
 						}
 					numCount++;
 				})
 				rowCount++;
+				numCount = 0;
 			})
 		}
 
@@ -336,9 +332,120 @@ var canvasArray = createCanvasArray();
 	//rotates current shape clockwise
 	function rotateShape()
 		{
+			var potR = currentRotation + 1;
+			if (potR === 5){potR = 1}
+			potentialShape = currentShapeObj.rotation[potR];
 
+			var collision = checkCollision(potentialShape,currentTopLeft.x, currentTopLeft.y);
+			var bounds = checkBounds();
+			var floor = checkBoundsFloor(potentialShape,currentTopLeft.x,currentTopLeft.y);
+
+
+			if(!collision && !bounds && !floor)
+				{
+
+					//rotate Shape <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+				}
+
+
+
+
+
+
+
+
+			//1. i need to see if shape will hit some other shape.
+			// returns true or false
+			function checkCollision(futureShape, futureTopLeftX, futureTopLeftY)
+				{	
+					
+					//var startPosition = canvasArray[futureTopLeftX][potentialTopLeftY];
+					var rowStart = futureTopLeftX;
+					var numStart = futureTopLeftX;
+					var rowCount = 0;
+					var numCount = 0;
+					var shapeNum = futureShape.num;
+					var collision = false;
+
+					futureShape.forEach(row =>{
+						row.forEach(num =>{ 
+							if (num === shapeNum)
+								{
+									if (!isItZero(rowStart+rowCount,numStart+numCount))
+										{
+											collision = true; 
+											return;
+										};
+
+								}
+							numCount++;
+						})
+						rowCount++;
+						numCount = 0;
+					})
+					return collision;
+				}
+ 			//2. if shape will go outside the wall
+ 			function checkBounds()
+ 				{
+ 					var rowStart =  currentTopLeft.x;
+					var numStart =  currentTopLeft.y;
+					var rowCount = 0;
+					var numCount = 0;
+					var shapeNum = futureShape.num;
+					var isOutside = false;
+
+					// what i want  to do here..
+					// check if the futureTopLeft is less than 0 (outside the left wall)
+					// check if the last num position is outside the array (bigger than 9..)
+					var rowLength = rowStart+potentialShape[0].length;
+
+
+					if (rowStart<0)
+						{
+							isOutside = true;
+						}
+					else if (rowLength>canvasArray[0].length)
+						{
+							isOutside = true;
+						}
+					return isOutside;
+ 				}
+			//3. if shape will go outside the floor
+			function checkBoundsFloor(futureShape, futureTopLeftX, futureTopLeftY)
+				{
+					// if future shape position or rotation is outside the last array..
+
+					//get future shape, and it's position..
+					var rowStart = futureTopLeftX;
+					var numStart = futureTopLeftY;
+					var rowCount = 0;
+					var numCount = 0;
+					var shapeNum = futureShape.num;
+					var isOutside = false;
+
+					// for each futureShape row, if it's bigger than the canvasArray, then it's outside the floor
+					var numberOfRows = rowStart + potentialShape.length;
+
+					if(numberOfRows > canvasArray.length)
+						{
+							isOutside = true;
+						}
+
+					// futureShape.forEach(row =>{
+					// 		if ((rowStart+rowCount)>canvasArray.length)
+					// 			{
+					// 				isOutside = true;
+					// 				return;
+					// 			};	
+					// 		rowCount++;
+					// 	})
+
+					return isOutside;
+				}
 		}
-
+		// This function needs more work to be done <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 //Shape Movement
 
