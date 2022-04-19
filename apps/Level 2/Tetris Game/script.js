@@ -35,7 +35,7 @@ var gameArea =
 				// 	520-(level*20))
 				// 	};
 				// this.moveInterval();
-				setInterval(moveShapeDown,500-(level*20));
+				//setInterval(moveShapeDown,500-(level*20));
 				this.canvas.width = 800;
 				this.canvas.height = 500;
 				this.context = this.canvas.getContext("2d");
@@ -84,7 +84,6 @@ var currentShapeObj;
 var currentRotation;
 var rotationNum;
 var currentTopLeft;
-var potentialTopLeft;
 var canvasArray = createCanvasArray();
 //Create CanvasArray
 
@@ -282,7 +281,7 @@ var canvasArray = createCanvasArray();
 	//places the new shape at the start point
 	function spawnShape()
 		{
-			var rowCount = 1;
+			var rowCount = 0;
 			var middle = 20;
 			currentTopLeft = {"x":20,"y":0};
 												//currentRotation =   [[1,1,1],
@@ -305,23 +304,24 @@ var canvasArray = createCanvasArray();
 	function clearPrevious()
 		{
 			//var startPosition = canvasArray[currentTopLeft.x][currentTopLeft.y];
-			var rowStart = currentTopLeft.x;
-			var numStart = currentTopLeft.y;
+			var rowStart = currentTopLeft.y;
+			var numStart = currentTopLeft.x;
 			var rowCount = 0;
 			var numCount = 0;
-			var shapeNum = currentShapeObj.num;
-
 			currentRotation.forEach(row =>{
 				row.forEach(num =>{ 
-					if (num === shapeNum)
-						{
-							if (!isItZero(canvasArray,rowStart+rowCount,numStart+numCount))
-								{canvasArray[rowStart+rowCount][numStart+numCount] = 0};
 
-						}
-					numCount++;
+						if (num != 0)
+							{
+
+								if (isItZero(canvasArray,rowStart+rowCount,numStart+numCount))
+									{canvasArray[rowStart+rowCount][numStart+numCount] = 0;};
+							};
+
+						numCount++;
 				})
 				rowCount++;
+				
 				numCount = 0;
 			})
 		}
@@ -329,7 +329,10 @@ var canvasArray = createCanvasArray();
 	//check if 1 or 0
 	function isItZero(object,x,y)
 		{
-			(object[x][y] === 0) ? true : false;
+			//console.log(y);
+			if (object[y][x] === 0){return true}else{return false};
+
+			
 		}
 
 //Shape Rotation
@@ -384,50 +387,53 @@ var canvasArray = createCanvasArray();
 	// which is moving downwards based on x speed..
 	function moveShapeDown()
 		{
-			if (canItMove())
-				{
-					clearPrevious();
+			clearPrevious();
+			// if (canItMove(0))
+			// 	{
 					currentTopLeft.y += 1;
 					updateShape();
-				}
-				 else if(
-					!checkCollision(currentRotation,currentTopLeft.x,currentTopLeft.y+1) ||
-					!checkBoundsFloor(currentRotation,currentTopLeft.x,currentTopLeft.y))
-				{
-					//if it's collision, that shape stays and we generate a new one..
-					generateShape();
-					spawnShape();
-					rowDeletionHandler();
-				}
+				// }
+				//  else if(
+				// 	!checkCollision(currentRotation,currentTopLeft.x,currentTopLeft.y+1) ||
+				// 	!checkBoundsFloor(currentRotation,currentTopLeft.x,currentTopLeft.y+1))
+				// {
+				// 	//if it's collision, that shape stays and we generate a new one..
+				// 	generateShape();
+				// 	spawnShape();
+				// 	rowDeletionHandler();
+				// }
 		}
 
 	function moveShapeLeft()
 		{
 			//if shape is not set, and there is no collision, move shape to the left.
-			if (canItMove())					
-				{
+			
+			// if (canItMove(1))					
+			// 	{
 					clearPrevious();
 					currentTopLeft.x -= 1;
+					if(currentTopLeft.x < 0){currentTopLeft.x = 0}
 					updateShape();
-				}
+				//}
 		}
 
 	function moveShapeRight()
 		{
-			if (canItMove())
-				{
+			// if (canItMove(-1))
+			// 	{
 					clearPrevious();
 					currentTopLeft.x += 1;
+					if(currentTopLeft.x > 25){currentTopLeft.x = 25}
 					updateShape();
-				}
+			//	}
 		}
 
-	function canItMove()
+	function canItMove(n)
 		{
 			// if there is no collision, shape is movable
 			var movable = false;
 			
-					var potentialTopLeft = currentTopLeft.x-1;
+					var potentialTopLeft = currentTopLeft.x-n;
 					var shape = currentRotation;
 
 					//checkCollision on future position..
@@ -448,24 +454,25 @@ var canvasArray = createCanvasArray();
 
 		function checkCollision(futureShape, topLeftX, topLeftY)
 			{	
-				var rowStart = topLeftX;
-				var numStart = topLeftY;
+				var rowStart = topLeftY;
+				var numStart = topLeftX;
 				var rowCount = 0;
 				var numCount = 0;
 				var collision = false;
-				var shapeNum = currentShapeObj.num;
 
 				futureShape.forEach(row =>{
 					if (collision === true){return};
 
 					row.forEach(num =>{ 
-						if (num === shapeNum)
+						if (num != 0)
 							{
 								if (collision === true){return};
-
 								if (!isItZero(canvasArray,rowStart+rowCount,numStart+numCount)) //if canvas position block is not zero
 									{
+
 										collision = true;
+										console.log("collision")
+										console.log(canvasArray[rowStart+rowCount][numStart+numCount]);
 									};
 
 							}
@@ -476,6 +483,20 @@ var canvasArray = createCanvasArray();
 				})
 				return collision;
 			}
+			//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+			// so the problem with this function is that we are detecting collision without any shapes around
+			// because where we are checking, there already is a shape, which is the current one that we are moving..
+			// so it "collides" with itself..
+
+			//How do we avoid this?
+			// 1. is to label our current shape differently, to make it unique in the canvas, until it lands..
+			// ex [0,0,c1]
+			//	  [c1,c1,c1]
+			// 1 being the actual shape number.. C meaning current..
+
+			// 2. create a seperate canvasArray that contains only the landed objects..
+			// that way we have no current shape in that array that will cause self-collision detection
+
 
  		//2. if shape will go outside the wall
  		// returns true or false
@@ -496,10 +517,12 @@ var canvasArray = createCanvasArray();
 				if (rowStart<0)
 					{
 						isOutside = true;
+						console.log("bounds left")
 					}
 				else if (rowLength>canvasArray[0].length)
 					{
 						isOutside = true;
+						console.log("bounds right")
 					}
 				return isOutside;
  			}
@@ -510,8 +533,8 @@ var canvasArray = createCanvasArray();
 				// if future shape position or rotation is outside the last array..
 
 				//get future shape, and it's position..
-				var rowStart = topLeftX;
-				var numStart = topLeftY;
+				var rowStart = topLeftY;
+				var numStart = topLeftX;
 				var rowCount = 0;
 				var numCount = 0;
 				var isOutside = false;
@@ -521,7 +544,9 @@ var canvasArray = createCanvasArray();
 
 				if(numberOfRows > canvasArray.length)
 					{
+						console.log("bounds floor")
 						isOutside = true;
+
 					}
 
 				return isOutside;
@@ -637,7 +662,7 @@ var canvasArray = createCanvasArray();
 			// so here what we need to do is take in all the current shape input, 
 			// clear the previous shape position
 			// and update it on canvasArray..
-			clearPrevious();
+			
 			//takes current shape and places it on canvasArray
 			//position is based on currentTopLeft
 			
@@ -645,11 +670,11 @@ var canvasArray = createCanvasArray();
 						row.forEach(num => {
 							if(num != 0)
 								{
-									canvasArray[currentTopLeft.x+rowCount][currentTopLeft.y+numCount]= num;
+									canvasArray[currentTopLeft.y+rowCount][currentTopLeft.x+numCount] = num;
 								}
 							numCount++;
 						})
-						if(numCount>currentRotation[0].length){numCount = 0}
+						if(numCount===currentRotation[0].length){numCount = 0}
 						rowCount++;
 					})
 		}
