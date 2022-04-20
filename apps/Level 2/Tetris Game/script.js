@@ -105,7 +105,7 @@ var canvasArray = createCanvasArray();
 			for (i = 0;i<h;i++)
 				{
 					// for each row, add 40 zeros	
-					array.push([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
+					array.push([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,]);
 				}
 
 			return array;
@@ -296,25 +296,24 @@ var canvasArray = createCanvasArray();
 			rowCount++;
 			middle = 20;
 			})
-
-
 		}
 
 	//clears the previous rotation/movement from canvasArray
 	function clearPrevious()
 		{
 			//var startPosition = canvasArray[currentTopLeft.x][currentTopLeft.y];
-			var rowStart = currentTopLeft.y;
-			var numStart = currentTopLeft.x;
+			var rowStart = currentTopLeft.y; //20
+			var numStart = currentTopLeft.x; //0
 			var rowCount = 0;
 			var numCount = 0;
+
 			currentRotation.forEach(row =>{
 				row.forEach(num =>{ 
 
 						if (num != 0)
 							{
 
-								if (isItZero(canvasArray,rowStart+rowCount,numStart+numCount))
+								if (true)
 									{canvasArray[rowStart+rowCount][numStart+numCount] = 0;};
 							};
 
@@ -348,7 +347,9 @@ var canvasArray = createCanvasArray();
 			var collision = checkCollision(potentialShape,currentTopLeft.x, currentTopLeft.y);
 			var bounds = checkBounds(potentialShape);
 			var floor = checkBoundsFloor(potentialShape,currentTopLeft.x,currentTopLeft.y);
-
+			console.log(collision);
+			console.log(bounds);
+			console.log(floor);
 			//if no collisions detected, rotate shape
 			if(!collision || !bounds || !floor)
 				{
@@ -387,7 +388,7 @@ var canvasArray = createCanvasArray();
 	// which is moving downwards based on x speed..
 	function moveShapeDown()
 		{
-			clearPrevious();
+			 clearPrevious();
 			// if (canItMove(0))
 			// 	{
 					currentTopLeft.y += 1;
@@ -423,7 +424,7 @@ var canvasArray = createCanvasArray();
 			// 	{
 					clearPrevious();
 					currentTopLeft.x += 1;
-					if(currentTopLeft.x > 25){currentTopLeft.x = 25}
+					if((currentTopLeft.x+currentRotation[0].length) > 37){currentTopLeft.x = 37}
 					updateShape();
 			//	}
 		}
@@ -471,7 +472,7 @@ var canvasArray = createCanvasArray();
 									{
 
 										collision = true;
-										console.log("collision")
+										console.log("collision");
 										console.log(canvasArray[rowStart+rowCount][numStart+numCount]);
 									};
 
@@ -544,7 +545,7 @@ var canvasArray = createCanvasArray();
 
 				if(numberOfRows > canvasArray.length)
 					{
-						console.log("bounds floor")
+						console.log("bounds floor");
 						isOutside = true;
 
 					}
@@ -662,10 +663,8 @@ var canvasArray = createCanvasArray();
 			// so here what we need to do is take in all the current shape input, 
 			// clear the previous shape position
 			// and update it on canvasArray..
-			
 			//takes current shape and places it on canvasArray
 			//position is based on currentTopLeft
-			
 					currentRotation.forEach(row => {
 						row.forEach(num => {
 							if(num != 0)
