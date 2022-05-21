@@ -124,9 +124,7 @@ const loadStatus = () =>
 			statusWeek.innerHTML = 0;
 			statusMonth.innerHTML = 0;
 			statusTotalChange.innerHTML = 0;
-			console.log("it's null");
 			} else {
-				console.log("it's setting");
 			statusWeek.innerHTML = JSON.parse(storage.getItem("average"))[0].averageWeek;
 			statusMonth.innerHTML = JSON.parse(storage.getItem("average"))[0].averageMonth;
 			statusTotalChange.innerHTML = JSON.parse(storage.getItem("average"))[0].averageTotal;
