@@ -25,11 +25,11 @@
 ## Who am i
 -----
 
-**Name:** Just Bane is fine...
-**Location:** Europe -> Serbia -> Novi Sad
-**Age:** 25 -- ` if (currentYear() != '2022'){alert('age is outdated');}`
-**Height:** about 140cm in working state.. :chair: :computer: 
-**Weight:** 7 average watermelons :watermelon:
+- **Name:** Just Bane is fine...
+- **Location:** Europe -> Serbia -> Novi Sad
+- **Age:** 25 -- ` if (currentYear() != '2022'){alert('age is outdated');}`
+- **Height:** about 140cm in working state.. :chair: :computer: 
+- **Weight:** 7 average watermelons :watermelon:
 
 **Coding skills:**
 - Javascript(plain)
