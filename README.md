@@ -12,8 +12,8 @@
 1. [Short introduction](#short-introduction)
 	- [Myself](#who-am-i) 
 	- [Projects](#about-my-projects)
-	- [Future](#future)
 	- [Current progress and plans](#current-progress-and-plans)
+	- [Contact](#contact)
 2. [Projects](#projects)
 	- [Level 1 (simple apps)](#level-1)
 	- [Level 2 (a bit more complex)](#level-2)
@@ -37,13 +37,13 @@
 - Express
 - React 
 - MongoDB
-- HTML/CSS plain
+- HTML/CSS 
 
 -----
 
 Mental skills: 
 - The usual human mental skills, some are updated however..
-- Laser focus (can focus intensely on a problem, increses time to solution..Depletes quickly if lacking sleep..)
+- Laser focus (can focus intensely on a problem, increases time to solution..Depletes quickly if lacking sleep..)
 - Regularly updated problem solving techniques 
 	- rubber ducky v.3.1 (i talk, write on paper, the duck looks at me..Judgmentally..)
 	- anything that can be wrong, might be wrong.
@@ -71,6 +71,7 @@ A way of dividing full-stack web development, into multiple pieces and handling
 them one at a time..
 
 Level 1 was introduction to javascript, the basics, learning the syntax
+
 Level 2 was about diving deeper into javascript and the logic..
 
 Level 3 is the final level..
@@ -78,21 +79,24 @@ First project was my test of javascript understanding.. The web scrapper..
 The second project will include react, mongoDB etc.
 (if after the second one, i think i lack some knowledge somewhere, i will add one more project..)
 
-
-## Future
+## Current progress and plans for near future
 -----
 
-## Current progress and plans
------
+- [ ] Write the Readme file ![progress-bar 32%/100%](https://progress-bar.dev/32/)
+- [ ] Test the export features (txt and google spreadsheet)
+- [ ] Prepare for the next project (write, read up some more, organize and setup what needs to be setup..)
 
-- [x] Do this and that
-- [ ] Test this and that
-- [ ] And after that, test the other thing as well..
-
-
+## Contact
+[LinkedIn](https://www.linkedin.com/in/branislav-milosevic-006948186/)
+[Facebook](https://www.facebook.com/branislav.milosevic.752487)
+[Gmail](https://mail.google.com/mail/?view=cm&source=mailto&to=[bane.baki.1997@gmail.com])
 # Projects
 -----
 These are my projects from easiest to hardest.
+Click on a project to open it, or go to my page at [JustBaneIsFine.github.io](https://justbaneisfine.github.io/)
+
+The first two levels don't really need any explaining, it's all in the title..
+Level 3 however has some documentation..
 
 ## Level 1
 -----
@@ -117,10 +121,87 @@ These are my projects from easiest to hardest.
 ## Level 3
 -----
 
-- [Web Scraper]()
-- [something]()
-- [another something]()
+- [Web Scraper](#web-scraper)
+
+## Web Scraper
+-----
+
+- [About](#about-the-scraper)
+- [**Prerequisites**](#prerequisites)
+- [**Usage**](#usage)
+- [Issues](#issues)
+
+### About the scraper
+-----
+Scrapes used car websites for cars of chosen make/model/year.
+Returns organized and sorted data.
+
+Currently only two websites:
+- [Polovni Automobili](https://www.polovniautomobili.com/)
+- [Kupujem Prodajem](https://www.kupujemprodajem.com/)
+
+#### Features: 
+- Can be sorted in many ways
+- Last search is stored in the browsers local storage
+- Can be exported to a txt file - need to test
+- Can be exported to google sheets - need to test
+- Links to car ads are included 
+
+Uses [puppeteer](https://pptr.dev/), [node.js](https://nodejs.org/en/) and [express](https://expressjs.com/)
+
+#### How it works
+Only a simple TLDR version:
+- **step 1: Make, model, year fetching and validation**
+Make/model/year are all fetched from the website upon input confirmation.
+We validate the inputs and send the car data to the server..
+
+- **step 2: Checking for data availability**
+Now we check if there is data available.
+If yes, we get the number of pages, and the url..
+We send this to another function which will handle the data gathering..
+
+- **step 3: Data gathering**
+Now we go to every page and collect the information for each car
+Send it back to the front-end, sort it and display it.
+
+
+### Prerequisites
+Everything you need in order for the scraper to work:
+- [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- [Node.js](https://nodejs.org/en/)
+- Puppeteer, express, cheerio, etc. will be added automatically
+
+
+
+### Usage
+
+
+
+
+
+
+### Issues
+I had to do a TON of troubleshooting and messing around in order to get this to work..
+There are many failsafe functions that prevent the app from crashing due to predictable errors, 
+slow internet speeds, servers not responding, selectors not showing up, etc.
+ex. pages will try to load 5 times if something fails, or time expires etc.
+
+Both websites work differently and load differently so it took quite a long time to get all these 
+things working perfectly..
+
+**However, things might still go wrong** and if you notice something, please let me know and i'll try to 
+fix it ASAP..
+
+At the time of posting this and testing it
+the max time from data entry to display is about 1 minute 30 seconds..
+That's with a high internet speed and about 10 pages from each website..
+
+
+- **IMPORTANT NOTE:**
+I am not sure if the websites work outside of Europe,Serbia
+So this may not work if you are outside this area..
+
 
 ## Contributions
 -----
-
+Currently only contributing to my own projects, no time for any other work..
