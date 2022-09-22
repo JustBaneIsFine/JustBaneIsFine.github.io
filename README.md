@@ -193,6 +193,24 @@ Some errors are expected and not code breaking, so as long as something is happe
 If you see any errors, please [let me know](#contact) and i will try to fix it ASAP..
 Or you can contribute, that would be very appreciated
 
+#### Exporting to txt file..
+
+- In order to export the data to txt, all you need to do is uncomment two lines of code in the handleData.js.
+- And add the path where you want the file to be created (inside the writeToFile.js file)
+
+``` javascript
+// handleData.js file
+import {writeToFile} from './writeToFile.js'
+writeToFile(content)
+```
+#### Exporting to google spreadsheet
+- Uncomment these two lines in the handleData.js file
+```javascript
+import {exportDataToSpreadsheet} from './exportToSpreadSheet.js';
+exportDataToSpreadsheet(content);
+```
+- and follow [the instructions](https://developers.google.com/sheets/api/quickstart/nodejs);
+
 ### Issues
 I had to do a TON of troubleshooting and messing around in order to get this to work..
 There are many failsafe functions that prevent the app from crashing due to predictable errors, 
