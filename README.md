@@ -87,9 +87,9 @@ The second project will include react, mongoDB etc.
 - [ ] Prepare for the next project (write, read up some more, organize and setup what needs to be setup..)
 
 ## Contact
-[LinkedIn](https://www.linkedin.com/in/branislav-milosevic-006948186/)
-[Facebook](https://www.facebook.com/branislav.milosevic.752487)
-[Gmail](https://mail.google.com/mail/?view=cm&source=mailto&to=[bane.baki.1997@gmail.com])
+- [LinkedIn](https://www.linkedin.com/in/branislav-milosevic-006948186/)
+- [Facebook](https://www.facebook.com/branislav.milosevic.752487)
+- [Gmail](https://mail.google.com/mail/?view=cm&source=mailto&to=[bane.baki.1997@gmail.com])
 # Projects
 -----
 These are my projects from easiest to hardest.
@@ -152,15 +152,18 @@ Uses [puppeteer](https://pptr.dev/), [node.js](https://nodejs.org/en/) and [expr
 #### How it works
 Only a simple TLDR version:
 - **step 1: Make, model, year fetching and validation**
+
 Make/model/year are all fetched from the website upon input confirmation.
 We validate the inputs and send the car data to the server..
 
 - **step 2: Checking for data availability**
+
 Now we check if there is data available.
 If yes, we get the number of pages, and the url..
 We send this to another function which will handle the data gathering..
 
 - **step 3: Data gathering**
+
 Now we go to every page and collect the information for each car
 Send it back to the front-end, sort it and display it.
 
@@ -171,14 +174,24 @@ Everything you need in order for the scraper to work:
 - [Node.js](https://nodejs.org/en/)
 - Puppeteer, express, cheerio, etc. will be added automatically
 
-
-
 ### Usage
 
+- Step 1: [Fork the entire project](https://github.com/JustBaneIsFine/JustBaneIsFine.github.io/fork) , or [download only the web-scraper project files.](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2FJustBaneIsFine%2FJustBaneIsFine.github.io%2Ftree%2Fmain%2Fapps%2FLevel+3%2FWeb+Scraper)
+- Step 2: Open the Web-scraper folder and run `npm update`. This will download all the necessary packages.
+- Step 3: run `npm start` and in your browser, type `http://localhost:3000/` and you should be good to go..
 
+Now you select the websites, and wait for the data to be fetched.
+Wait, select, confirm, and repeat..
+That's it.
+After this you will wait a bit longer for data to be collected and displayed.
 
+Usually it takes up to 2 minutes, if it takes more than that, you either have a lot of data,
+or something is not working properly..
 
+Some errors are expected and not code breaking, so as long as something is happening in the terminal, that's a good sign..
 
+If you see any errors, please [let me know](#contact) and i will try to fix it ASAP..
+Or you can contribute, that would be very appreciated
 
 ### Issues
 I had to do a TON of troubleshooting and messing around in order to get this to work..
@@ -193,14 +206,13 @@ things working perfectly..
 fix it ASAP..
 
 At the time of posting this and testing it
-the max time from data entry to display is about 1 minute 30 seconds..
+the max time from data entry to display is about 2 minutes..
 That's with a high internet speed and about 10 pages from each website..
 
 
 - **IMPORTANT NOTE:**
 I am not sure if the websites work outside of Europe,Serbia
 So this may not work if you are outside this area..
-
 
 ## Contributions
 -----
