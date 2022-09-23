@@ -130,7 +130,7 @@ Level 3 however has some documentation..
 - [**Prerequisites**](#prerequisites)
 - [**Usage**](#usage)
 - [Issues](#issues)
-
+- [Video demonstration](#video-demonstration)
 ### About the scraper
 -----
 Scrapes used car websites for cars of chosen make/model/year.
@@ -212,6 +212,12 @@ exportDataToSpreadsheet(content);
 - and follow [the instructions](https://developers.google.com/sheets/api/quickstart/nodejs);
 
 ### Issues
+
+### **IMPORTANT NOTE:**
+**I do not belive that these websites work outside of Europe,Serbia
+So this may not work if you are outside this area..**
+Because of that, i have created a short [video demonstration](#video-demonstration) of the scraper in action
+
 I had to do a TON of troubleshooting and messing around in order to get this to work..
 There are many failsafe functions that prevent the app from crashing due to predictable errors, 
 slow internet speeds, servers not responding, selectors not showing up, etc.
@@ -227,10 +233,13 @@ At the time of posting this and testing it
 the max time from data entry to display is about 2 minutes..
 That's with a high internet speed and about 10 pages from each website..
 
+### Video demonstration
+<video src='https://www.youtube.com/watch?v=jNQXAC9IVRw' width=180/>
 
-- **IMPORTANT NOTE:**
-I am not sure if the websites work outside of Europe,Serbia
-So this may not work if you are outside this area..
+
+
+
+
 
 ## Contributions
 -----
