@@ -234,9 +234,8 @@ the max time from data entry to display is about 2 minutes..
 That's with a high internet speed and about 10 pages from each website..
 
 ### Video demonstration
-<video src='https://www.youtube.com/watch?v=jNQXAC9IVRw' width=180/>
 
-
+https://youtu.be/JY5E0nMa6LU
 
 
 
