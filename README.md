@@ -82,8 +82,8 @@ The second project will include react, mongoDB etc.
 ## Current progress and plans for near future
 -----
 
-- [ ] Write the Readme file ![progress-bar 32%/100%](https://progress-bar.dev/32/)
-- [ ] Test the export features (txt and google spreadsheet)
+- [ ] Write the Readme file ![progress-bar 90%/100%](https://progress-bar.dev/90/)
+- [x] Test the export features (txt and google spreadsheet)
 - [ ] Prepare for the next project (write, read up some more, organize and setup what needs to be setup..)
 
 ## Contact
@@ -122,6 +122,7 @@ Level 3 however has some documentation..
 -----
 
 - [Web Scraper](#web-scraper)
+- [Job Hunting website](#job-hunting)
 
 ## Web Scraper
 -----
@@ -238,6 +239,8 @@ That's with a high internet speed and about 10 pages from each website..
 https://youtu.be/JY5E0nMa6LU
 
 
+## Job hunting
+-----
 
 
 ## Contributions
