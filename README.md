@@ -88,7 +88,8 @@ The second project will include react, mongoDB etc.
 ## Contact
 - [LinkedIn](https://www.linkedin.com/in/branislav-milosevic-006948186/)
 - [Facebook](https://www.facebook.com/branislav.milosevic.752487)
-- [Gmail](https://mail.google.com/mail/?view=cm&source=mailto&to=[bane.baki.1997@gmail.com])
+- [Gmail](https://mail.google.com/mail/u/0/?fs=1&to=bane.baki.1997@gmail.com&tf=cm)
+
 # Projects
 -----
 These are my projects from easiest to hardest.
