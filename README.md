@@ -82,8 +82,16 @@ The second project will include react, mongoDB etc.
 ## Current progress and plans for near future
 -----
 
-- [ ] Write the Readme file ![progress-bar 90%/100%](https://progress-bar.dev/90/)
-- [ ] Prepare for the next project (write, read up some more, organize and setup what needs to be setup..)
+- Working on Job Hunt website..  Estimated time to complete is about a year (could be very wrong)
+- Currently establishing the back-end and front end connection, sessions, database, and the basic functionalities 
+- [] So it should launch by the end of 2023, hopefully earlier..
+- [] After this is done and the project has been launched, i need to refactor all the previous projects
+- [] Create some proper documentation for the projects
+- [] Maybe create a couple of blogs on what each project has taught me, 
+a good oppurtunity to summarize what will be about 2 years of learning..
+- [] Create a personal website with all the projects and start looking for employment.
+- [] Get employed and continue learning
+
 
 ## Contact
 - [LinkedIn](https://www.linkedin.com/in/branislav-milosevic-006948186/)
@@ -144,8 +152,8 @@ Currently only two websites:
 #### Features: 
 - Can be sorted in many ways
 - Last search is stored in the browsers local storage
-- Can be exported to a txt file - need to test
-- Can be exported to google sheets - need to test
+- Can be exported to a txt file
+- Can be exported to google sheets
 - Links to car ads are included 
 
 Uses [puppeteer](https://pptr.dev/), [node.js](https://nodejs.org/en/) and [express](https://expressjs.com/)
