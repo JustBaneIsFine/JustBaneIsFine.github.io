@@ -1,9 +1,7 @@
-# Hello :wave: Welcome to my page
-# **(WORK IN PROGRESS)**
 
-## This is my website: [JustBaneIsFine.github.io](https://justbaneisfine.github.io/)
-### And this is more about me and my projects:
-
+  <h1 align="center">
+ <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&width=435&lines=Website+is+under+construction" alt="Website under construction SVG" /></a>
+</h1>
 
 
 ### Table of contents
@@ -25,74 +23,49 @@
 ## Who am i
 -----
 
-- **Name:** Just Bane is fine...
+- **Name:** Branislav Milosevic (but... Just Bane is fine)
 - **Location:** Europe -> Serbia -> Novi Sad
 - **Age:** 25 -- ` if (currentYear() != '2022'){alert('age is outdated');}`
-- **Height:** about 140cm in working state.. :chair: :computer: 
+- **Height:** about 140cm in working state.. :chair: :computer:
 - **Weight:** 7 average watermelons :watermelon:
 
-**Coding skills:**
-- Javascript(plain)
+**Skills:**
+- Javascript
 - Node.js
 - Express
-- React 
 - MongoDB
-- HTML/CSS 
+- HTML/CSS
+- Git
+
+**Curently learning: **
+- Next.js
+- Sass
+- React
+- Typescript
 
 -----
-
-Mental skills: 
-- The usual human mental skills, some are updated however..
-- Laser focus (can focus intensely on a problem, increases time to solution..Depletes quickly if lacking sleep..)
-- Regularly updated problem solving techniques 
-	- rubber ducky v.3.1 (i talk, write on paper, the duck looks at me..Judgmentally..)
-	- anything that can be wrong, might be wrong.
-	- Are you sure this is what you think it is? 
-	- Read the documentation..
-- Good anger and frustration managment. (decreases the longer the problem persists, exercise break helps)
-- Good communication skills, when it comes to machines..But humans also..
-
-Hobies:
-- learning about the future of technology
-- learning about psychology and child development
-- learning about neuroscience and our major drivers
-- etc..
-
-Would love to:
-- Travel
-- Learn new languages: Spanish, Russian, Japanese
-- Update the way we educate children and ourselves
-- etc..
 
 ## About my projects
 -----
-Level 1-3.. That was my way of spliting a big problem, into smaller pieces..
-A way of dividing full-stack web development, into multiple pieces and handling 
-them one at a time..
+Projects are split into 3 levels (easy to hard)
 
-Level 1 was introduction to javascript, the basics, learning the syntax
+- Level 1: introduction to javascript, the basics.
 
-Level 2 was about diving deeper into javascript and the logic..
+- Level 2: diving deeper into javascript.
 
-Level 3 is the final level..
-First project was my test of javascript understanding.. The web scrapper..
-The second project will include react, mongoDB etc.
-(if after the second one, i think i lack some knowledge somewhere, i will add one more project..)
+- Level 3 is the final level: Combining everything to build bigger apps and learning new technologies and frameworks
 
-## Current progress and plans for near future
+## Current progress and plans
 -----
 
-- Working on Job Hunt website..  Estimated time to complete is about a year (could be very wrong)
-- Currently establishing the back-end and front end connection, sessions, database, and the basic functionalities 
-- [] So it should launch by the end of 2023, hopefully earlier..
-- [] After this is done and the project has been launched, i need to refactor all the previous projects
-- [] Create some proper documentation for the projects
-- [] Maybe create a couple of blogs on what each project has taught me, 
-a good oppurtunity to summarize what will be about 2 years of learning..
-- [] Create a personal website with all the projects and start looking for employment.
-- [] Get employed and continue learning
 
-
+- [x] Level 1 and level 2 projects------![Progress 90](https://geps.dev/progress/90)
+- [ ] Web scraper project------![Progress 80](https://geps.dev/progress/80)
+- [ ] Refactor all projects------![Progress 20](https://geps.dev/progress/20)
+- [ ] Plan out and create 2 additional projects for level 3------![Progress 10](https://geps.dev/progress/10)
+- [ ] Implement Sass, Next.js for at least one of the projects------![Progress 0](https://geps.dev/progress/00)
+- [ ] Create a reactNative project------![Progress 0](https://geps.dev/progress/00)
+- [ ] Working on Job Hunt website is delayed (Priority goes to level 3 projects)------![Progress 25](https://geps.dev/progress/25)
 ## Contact
 - [LinkedIn](https://www.linkedin.com/in/branislav-milosevic-006948186/)
 - [Facebook](https://www.facebook.com/branislav.milosevic.752487)
@@ -103,34 +76,33 @@ a good oppurtunity to summarize what will be about 2 years of learning..
 These are my projects from easiest to hardest.
 Click on a project to open it, or go to my page at [JustBaneIsFine.github.io](https://justbaneisfine.github.io/)
 
-The first two levels don't really need any explaining, it's all in the title..
-Level 3 however has some documentation..
+
 
 ## Level 1
 -----
 
-- [Clock]()
-- [Expense tracker]()
-- [Pig latin]()
-- [Recipe app]()
-- [To do list]()
-- [Vowel counter]()
-- [Weight tracker]()
+- [Clock](https://justbaneisfine.github.io/apps/Level%201/Clock/Digital%20clock.html)
+- [Expense tracker](https://justbaneisfine.github.io/apps/Level%201/Expense%20tracker/Expense%20tracker.html)
+- [Pig latin](https://justbaneisfine.github.io/apps/Level%201/Pig%20Latin/Pig%20Latin.html)
+- [Recipe app](https://justbaneisfine.github.io/apps/Level%201/Recipe%20app/index.html)
+- [To do list](https://justbaneisfine.github.io/apps/Level%201/To%20do%20list/To%20do.html)
+- [Vowel counter](https://justbaneisfine.github.io/apps/Level%201/Vowel%20Counter/index.html)
+- [Weight tracker](https://justbaneisfine.github.io/apps/Level%201/Weight%20tracker/Tracker.html)
 
 ## Level 2
 -----
 
-- [Calculator]()
-- [Pong game]()
-- [Snake game]()
-- [Space invaders]()
-- [Tetris]()
+- [Calculator](https://justbaneisfine.github.io/apps/Level%202/Calculator/index.html)
+- [Pong game](https://justbaneisfine.github.io/apps/Level%202/Pong%20Game/index.html)
+- [Snake game](https://justbaneisfine.github.io/apps/Level%202/Snake%20Game/index.html)
+- [Space invaders](https://justbaneisfine.github.io/apps/Level%202/Space%20Invaders%20Game/index.html)
+- [Tetris](https://justbaneisfine.github.io/apps/Level%202/Tetris%20Game/index.html) unfinished!
 
 ## Level 3
 -----
 
 - [Web Scraper](#web-scraper)
-- [Job Hunting website](#Job-hunt)
+- [Job Hunting website](#job-hunt)
 
 ## Web Scraper
 -----
