@@ -60,6 +60,7 @@ Projects are split into 3 levels (easy to hard)
 
 
 - [x] Level 1 and level 2 projects------![Progress 90](https://geps.dev/progress/90)
+- [ ] Improve github page------![Progress 10](https://geps.dev/progress/10)
 - [ ] Web scraper project------![Progress 80](https://geps.dev/progress/80)
 - [ ] Refactor all projects------![Progress 20](https://geps.dev/progress/20)
 - [ ] Plan out and create 2 additional projects for level 3------![Progress 10](https://geps.dev/progress/10)
@@ -126,29 +127,36 @@ Currently only two websites:
 - Last search is stored in the browsers local storage
 - Can be exported to a txt file
 - Can be exported to google sheets
-- Links to car ads are included 
+- Working links
 
 Uses [puppeteer](https://pptr.dev/), [node.js](https://nodejs.org/en/) and [express](https://expressjs.com/)
-
+-----
 #### How it works
 Only a simple TLDR version:
-- **step 1: Make, model, year fetching and validation**
+
+-----
+- **step 1: Fetching and validation**
 
 Make/model/year are all fetched from the website upon input confirmation.
 We validate the inputs and send the car data to the server..
 
-- **step 2: Checking for data availability**
+-----
+- **step 2: Data availability**
 
 Now we check if there is data available.
-If yes, we get the number of pages, and the url..
-We send this to another function which will handle the data gathering..
+If yes, we get the number of pages, and prepare for data gathering
 
+-----
 - **step 3: Data gathering**
 
-Now we go to every page and collect the information for each car
-Send it back to the front-end, sort it and display it.
+Data is collected from every page and sent back to the front-end
 
+-----
+- **step 4: Sort and display**
 
+Data is now displayed and available for the user to sort/export or view
+
+-----
 ### Prerequisites
 Everything you need in order for the scraper to work:
 - [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
@@ -221,8 +229,22 @@ https://youtu.be/JY5E0nMa6LU
 
 ## Job hunt
 -----
-More information will be added soon...
+
+This will be my first fully working website, which i hope will bring something new to the job marketplace..
+I plan on building everything myself, which i hope will teach me a lot.
+
+What it will use (this is subject to change)
+- MongoDB
+- Express
+- Nextjs
+- React- or maybe ReactNative?
+- Typescript
+- (still not sure about the css framework)
+
+**This project is delayed for now**
+- Priority currently goes to level 3 projects 
+- More information will be added here once these projects are finished 
 
 ## Contributions
 -----
-Currently only contributing to my own projects, no time for any other work..
+Currently only contributing to my own projects, no time for any other work unfortunately
