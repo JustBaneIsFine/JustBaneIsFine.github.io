@@ -54,9 +54,9 @@ Projects are split into 3 levels (easy to hard)
 
 - Level 2: diving deeper into javascript.
 
-- Level 3: Combining everything to build bigger apps and learning new technologies and frameworks
+- Level 3: Creating more complex apps with javascript and minimal ui/ux 
 
-- Level 4: Advanced fullstack projects, fullstack live websites/apps 
+- Level 4: Combining everything to create advanced fullstack projects, fullstack live websites/apps 
 
 ## Current progress and plans
 -----
