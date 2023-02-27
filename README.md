@@ -237,6 +237,7 @@ https://youtu.be/JY5E0nMa6LU
 
 ## Car Scraper
 -----
+[Visit the website](https://car-scraper.netlify.app/)
 
 This is a jump from the Web scraper (which didn't focus on ui/ux at all, and just spit out data).
 
